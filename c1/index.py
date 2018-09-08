@@ -82,7 +82,7 @@ def getReverseFewNum (arr):
         right = merge_sort(arr[middle:])
         return merge(left, right)
 
-    print(merge_sort(arr))
+    # print(merge_sort(arr))
 
     return totals        
 
@@ -104,5 +104,42 @@ def createD (N):
     
     return D
 
+# 全排列算法
+def get_all_fron (length):
+    all = list(range(length))
+    # 返回数组
+    result = []
+    def _fron (arr, res_list):
+        if len(arr) == 1:
+            res_list.append(arr[0])
+            result.append(res_list)
+        else:
+            for i in range(len(arr)):
+                # new_res_list = res_list + arr[:1]
+                new_arr = arr[:]
+                new_arr.pop(i)
+                _fron(new_arr, res_list + [arr[i]])
 
-print(createD(N))
+    _fron(all, [])
+    return result
+
+print(get_all_fron(4))
+# 通过全排列算法,我们就能获取到一个NxN的矩阵的计算方式了
+def genDString (D):
+    string = ''
+
+    for fron in get_all_fron(len(D)):
+        if getReverseFewNum(list(map(lambda x : x + 1, fron))) % 2 == 0:
+            string += '+'
+        else:
+            string += '-'
+        for i in range(len(fron)):
+            string += D[i][fron[i]]
+    
+    print(string)
+    return string
+
+
+
+
+genDString(createD(4))
