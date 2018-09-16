@@ -123,7 +123,7 @@ def get_all_fron (length):
     _fron(all, [])
     return result
 
-print(get_all_fron(4))
+# print(get_all_fron(4))
 # 通过全排列算法,我们就能获取到一个NxN的矩阵的计算方式了
 def genDString (D):
     string = ''
@@ -142,4 +142,27 @@ def genDString (D):
 
 
 
-genDString(createD(4))
+# genDString(createD(4))
+
+# 转置行列式,将行列式翻转
+
+D3 = [
+    ['a11', 'a12', 'a13', 'a14'],
+    ['a21', 'a22', 'a23', 'a24'],
+    ['a31', 'a32', 'a33', 'a34'],
+    ['a41', 'a42', 'a43', 'a44']
+]
+
+def getDt (D):
+    l = len(D)
+    Dt = []
+    for i in range(l):
+        row = []
+        for j in range(l):
+            row.append(D[j][i])
+        Dt.append(row)
+    print(Dt)
+
+getDt(D3)
+
+
